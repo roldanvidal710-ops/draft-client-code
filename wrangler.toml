@@ -1,0 +1,33 @@
+name = "draft-ai-api"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+
+# Non-secret settings. Safe to commit.
+[vars]
+# Websites allowed to call this API (comma-separated, no trailing slash).
+ALLOWED_ORIGINS = false
+# OpenAI-compatible base URL of your AI provider (no trailing /chat/completions).
+# Examples: https://openrouter.ai/api/v1 | https://api.groq.com/openai/v1 |
+#           https://api.mistral.ai/v1 | https://api.deepseek.com
+AI_BASE_URL = "https://api.groq.com/openai/v1"
+# Model ID exactly as your provider lists it. Free model IDs change often,
+# so copy the current one from your provider's model list.
+AI_MODEL = "openai/gpt-oss-120b"
+
+# Per-visitor limit: 10 requests per 60 seconds, counted by IP address.
+# Needs Wrangler 4.36.0 or newer. If the build rejects this block, delete it;
+# the code skips rate limiting when the binding is missing.
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 10
+  period = 60
+
+[observability]
+enabled = true
+
+# SECRET (never write it in this file or in GitHub):
+#   AI_API_KEY
+# Add it as a Secret in the Cloudflare dashboard (or: npx wrangler secret put AI_API_KEY).
