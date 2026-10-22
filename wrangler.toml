@@ -5,7 +5,7 @@ compatibility_date = "2025-09-01"
 # Non-secret settings. Safe to commit.
 [vars]
 # Websites allowed to call this API (comma-separated, no trailing slash).
-ALLOWED_ORIGINS = "http://localhost:7700/"
+ALLOWED_ORIGINS = false
 # OpenAI-compatible base URL of your AI provider (no trailing /chat/completions).
 # Examples: https://openrouter.ai/api/v1 | https://api.groq.com/openai/v1 |
 #           https://api.mistral.ai/v1 | https://api.deepseek.com
